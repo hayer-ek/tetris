@@ -13,10 +13,41 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #1A1A1A;
+    background-color: #1a1a1a;
 }
 
 .canvas {
     background-color: #606060;
     margin-top: 50px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    width: 20%;
+    justify-content: space-around;
+}
+
+.button-container button {
+    margin-top: 50px;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #606060;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: transform ease 0.3s;
+}
+
+.button-container button:focus {
+    outline: none;
+}
+
+.button-container button:hover {
+    transform: scale(1.3);
 }

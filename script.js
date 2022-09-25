@@ -289,3 +289,23 @@ document.querySelector(".pause").addEventListener("click", () => {
         isPause = false;
     }
 });
+
+document.querySelector(".restart").addEventListener("click", () => {
+    game.blocks = [];
+    game.activeBlock = null;
+    game.gameTimeout = null;
+
+    game.pixels = (() => {
+        // Создает виртуальное поле, с 0 в пустой клетке и с 1 если в клетке находится блок
+        const rows = canvas.height / BOX_SIZE;
+        const columns = canvas.width / BOX_SIZE;
+        const res = [];
+        for (let row = 0; row < rows; row++) {
+            res[row] = [];
+            for (let column = 0; column < columns; column++) {
+                res[row][column] = 0;
+            }
+        }
+        return res;
+    })();
+});
