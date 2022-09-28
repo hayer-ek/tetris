@@ -6,10 +6,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Tetris</title>
         <link rel="stylesheet" href="./style.css" />
-        <script src="./script.js" type="module" defer></script>
+        <script src="./script.js" defer></script>
     </head>
     <body>
-        <canvas class="canvas" width="608" height="684"></canvas>
+        <div class="game">
+            <canvas class="next" width="400" height="100"></canvas>
+            <canvas class="canvas" width="608" height="684"></canvas>
+            <div class="score">
+                Score
+                <div class="number">0</div>
+            </div>
+        </div>
+
         <div class="button-container">
             <button class="pause">Pause</button>
             <button class="restart">Restart</button>
