@@ -81,3 +81,18 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.game .nextBlock {
+    color: white;
+    font-size: 30px;
+    width: 400px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.game .nextBlock .nextBlockCanvas {
+    background-color: #606060;
+}

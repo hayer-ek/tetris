@@ -70,18 +70,13 @@ bg();
 // TODO: Сделать слева от canvas поле в котором будет показываться следующий блок
 
 class Block {
-    constructor(type) {
-        this.rotateStatus = Math.ceil(4 * Math.random());
-        let blocksPack = blocks[type][this.rotateStatus];
-        this.block = [];
-        this.block[0] = blocksPack[0];
-        this.block[1] = blocksPack[1];
-        this.block[2] = blocksPack[2];
-        this.block[3] = blocksPack[3];
-        this.width = blocksPack[4];
-        this.height = blocksPack[5];
+    constructor() {
+        this.rotateStatus = nextBlock.rotate;
+        this.block = nextBlock.block;
+        this.width = nextBlock.width;
+        this.height = nextBlock.height;
 
-        this.type = type;
+        this.type = nextBlock.type;
         this.y = 0;
         this.x = Math.floor(canvas.width / BOX_SIZE / 2);
         this.color = "#F9685C";
@@ -214,9 +209,8 @@ class Game {
     }
 
     createBlock() {
-        const block = new Block(
-            BLOCK_TYPES[Math.floor(BLOCK_TYPES.length * Math.random())]
-        );
+        const block = new Block();
+        nextBlock.newBlock();
 
         this.activeBlock = block;
     }
@@ -373,6 +367,63 @@ class Game {
         this.activeBlock.rotate();
     }
 }
+
+const nextBlockCanvas = document.querySelector(
+    ".game .nextBlock .nextBlockCanvas"
+);
+const nextBlockCtx = nextBlockCanvas.getContext("2d");
+
+class nextBlockWindow {
+    constructor() {
+        this.type = BLOCK_TYPES[Math.floor(BLOCK_TYPES.length * Math.random())];
+        this.rotate = Math.ceil(4 * Math.random());
+        let blocksPack = blocks[this.type][this.rotate];
+        this.block = [];
+        this.block[0] = blocksPack[0];
+        this.block[1] = blocksPack[1];
+        this.block[2] = blocksPack[2];
+        this.block[3] = blocksPack[3];
+        this.width = blocksPack[4];
+        this.height = blocksPack[5];
+    }
+    newBlock() {
+        this.type = BLOCK_TYPES[Math.floor(BLOCK_TYPES.length * Math.random())];
+        this.rotate = Math.ceil(4 * Math.random());
+        let blocksPack = blocks[this.type][this.rotate];
+        this.block = [];
+        this.block[0] = blocksPack[0];
+        this.block[1] = blocksPack[1];
+        this.block[2] = blocksPack[2];
+        this.block[3] = blocksPack[3];
+        this.width = blocksPack[4];
+        this.height = blocksPack[5];
+        this.render();
+    }
+    render() {
+        nextBlockCtx.clearRect(
+            0,
+            0,
+            nextBlockCanvas.width,
+            nextBlockCanvas.height
+        );
+        nextBlockCtx.beginPath();
+        nextBlockCtx.fillStyle = "#F9685C";
+        this.block.forEach((row, rowIndex) => {
+            row.forEach((value, column) => {
+                if (!value) return;
+                nextBlockCtx.fillRect(
+                    column * (BOX_SIZE / 2) + BOX_SIZE * 3.1,
+                    rowIndex * (BOX_SIZE / 2)+ BOX_SIZE * 1.4,
+                    BOX_SIZE / 2 + 1,
+                    BOX_SIZE / 2 + 1
+                );
+            });
+        });
+        nextBlockCtx.closePath();
+    }
+}
+
+const nextBlock = new nextBlockWindow();
 
 const game = new Game(2.5);
 game.nextFrame();
