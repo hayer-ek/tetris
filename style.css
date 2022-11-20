@@ -14,16 +14,17 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #1a1a1a;
+    flex-direction: column;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .canvas {
     background-color: #606060;
-    margin-top: 50px;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
 }
 
 .button-container {
@@ -62,7 +63,7 @@ body {
 }
 
 .score {
-    width: 400px;
+    width: 200px;
     height: 200px;
     color: white;
     display: flex;
@@ -75,24 +76,80 @@ body {
 .score .number {
     font-size: 30px;
     background-color: #606060;
-    width: 70%;
+    width: 100%;
     height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 
 .game .nextBlock {
     color: white;
     font-size: 30px;
-    width: 400px;
-    height: 200px;
+    height: auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-direction: column;
 }
 
 .game .nextBlock .nextBlockCanvas {
     background-color: #606060;
+    margin-top: 5%;
+    border-radius: 10px;
+}
+
+.controller {
+    display: none;
+}
+
+@media screen and (max-width: 1250px) {
+    body {
+        justify-content: flex-start;
+    }
+    .game {
+        flex-direction: column;
+    }
+    .game .nextBlock {
+        margin: 5px 0;
+        font-size: 130%;
+    }
+    .game .nextBlock .nextBlockCanvas {
+        margin-top: 5px;
+    }
+    .score {
+        margin-top: 5px;
+        font-size: 150%;
+        width: auto;
+        height: 10%;
+    }
+    .button-container {
+        width: 50%;
+    }
+    .button-container button {
+        padding: 2px 10px;
+        font-size: 13px;
+        margin-top: 40px;
+    }
+
+    .controller {
+        display: block;
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 60%;
+    }
+    .controller button {
+        width: 20%;
+        background-color: #606060;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
